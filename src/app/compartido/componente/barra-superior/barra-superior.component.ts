@@ -12,14 +12,10 @@ import { AutorizarComponent } from '../../../seguridad/autorizar/autorizar.compo
   templateUrl: './barra-superior.component.html',
   styleUrl: './barra-superior.component.css'
 })
-export class BarraSuperiorComponent implements OnInit {
+export class BarraSuperiorComponent {
 
   userServicio = inject(SeguridadService)
   email: string = '';
 
-  ngOnInit(): void {
-    const extras = this.userServicio.obtenerCampoJWT('extras')
-    this.email = extras.email;
-  }
 
 }

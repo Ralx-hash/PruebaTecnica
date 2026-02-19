@@ -11,7 +11,7 @@
   <div class="espacio"></div>
 
   <app-autorizar>
-    <a mat-button autorizado>{{email}}</a>
+    <a mat-button autorizado>{{userServicio.obtenerCampoJWT('extras')?.email}}</a>
     <a mat-button autorizado (click)="userServicio.logout()">Logout</a>
   </app-autorizar>
 </mat-toolbar>
