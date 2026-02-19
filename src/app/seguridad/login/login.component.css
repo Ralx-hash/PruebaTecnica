@@ -1,0 +1,23 @@
+.formulario-login{
+    display: flex;
+    flex-direction: column;
+}
+
+.campos-rellenar{
+    margin-bottom: 40px;
+}
+
+/* Estilos para errores del servidor */
+.errores-servidor {
+    margin-bottom: 20px;
+}
+
+.mensaje-error {
+    background-color: #ffebee;
+    color: #c62828;
+    padding: 10px;
+    border-radius: 4px;
+    border-left: 4px solid #c62828;
+    margin-bottom: 8px;
+    font-size: 14px;
+}

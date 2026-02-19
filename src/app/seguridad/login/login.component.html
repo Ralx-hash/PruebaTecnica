@@ -1,14 +1,28 @@
 <div class="cuadro-login">
   <mat-card appearance="outlined">
-    <mat-card-header>
+    <mat-card-header style="margin-bottom: 20px;">
       <mat-card-title>Login</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-      <form (submit)="guardarCambios()">
-        <mat-form-field appearance="outline">
+      <form class="formulario-login" [formGroup]="form" (ngSubmit)="logear()">
+        
+        <div *ngIf="mensajesError.length > 0" class="errores-servidor">
+          <div *ngFor="let error of mensajesError" class="mensaje-error">
+            {{ error }}
+          </div>
+        </div>
+        
+        <mat-form-field appearance="outline" class="campos-rellenar">
           <mat-label>Email</mat-label>
-          <input matInput type="email" />
+          <input matInput type="email" formControlName="email" />
         </mat-form-field>
+
+        <mat-form-field appearance="outline" class="campos-rellenar">
+          <mat-label>Contraseña</mat-label>
+          <input matInput type="password" formControlName="password" />
+        </mat-form-field>
+        
+        <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">Login</button>
       </form>
     </mat-card-content>
   </mat-card>
