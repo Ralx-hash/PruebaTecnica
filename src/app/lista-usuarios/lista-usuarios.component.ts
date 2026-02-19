@@ -7,10 +7,12 @@ import { MatTableModule } from '@angular/material/table';
 import { SeguridadService } from '../seguridad/seguridadService';
 import { UsuarioListaDTO } from '../../models/users';
 import { take } from 'rxjs';
+import { PerfilComponent } from '../compartido/perfil/perfil.component';
 
 @Component({
   selector: 'app-lista-usuarios',
-  imports: [MatToolbarModule, MatButtonModule, CommonModule, MatPaginatorModule, MatTableModule],
+  imports: [MatToolbarModule, MatButtonModule, CommonModule, MatPaginatorModule, MatTableModule, 
+    PerfilComponent],
   templateUrl: './lista-usuarios.component.html',
   styleUrl: './lista-usuarios.component.css'
 })
@@ -33,7 +35,7 @@ export class ListaUsuariosComponent implements OnInit{
   
   userServicio = inject(SeguridadService);
 
-  displayedColumns: string[] = ['id', 'nombre', 'rol', "renta_mensual"];
+  displayedColumns: string[] = ['id', 'nombre', 'rol', 'renta_mensual'];
 
 
 

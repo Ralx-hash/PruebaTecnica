@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { environment } from '../../environments/enviroment.development';
 import { Router } from '@angular/router';
-import { UserLogin, RespuestaAutenticacionDTO, UsuarioListaDTO } from '../../models/users';
+import { UserLogin, RespuestaAutenticacionDTO, UsuarioListaDTO, UsuarioPerfilDTO } from '../../models/users';
 import { Observable, tap } from 'rxjs';
 
 @Injectable({
@@ -25,8 +25,11 @@ export class SeguridadService {
   }
 
   obtenerUsuarios(): Observable<UsuarioListaDTO[]> {
-    return this.http.get<UsuarioListaDTO[]>(`${this.urlbase}/users-filtered`)
-    .pipe(tap(listaUsuarios => {console.log(listaUsuarios)}));
+    return this.http.get<UsuarioListaDTO[]>(`${this.urlbase}/users-filtered`);
+  }
+
+  obtenerPerfil(): Observable<UsuarioPerfilDTO> {
+    return this.http.get<UsuarioPerfilDTO>(`${this.urlbase}/perfil`);
   }
 
   //guardar token y expiracion en localstorage

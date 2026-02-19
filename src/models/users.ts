@@ -12,5 +12,15 @@ export interface RespuestaAutenticacionDTO {
 export interface UsuarioListaDTO {
     id: number;
     nombre: string;
+    rol: string;
+    renta_mensual: number;
+    email: string;
+}
+
+export interface UsuarioPerfilDTO {
+    id: number;
+    nombre: string;
+    rol: string;
+    renta_mensual: number;
     email: string;
 }

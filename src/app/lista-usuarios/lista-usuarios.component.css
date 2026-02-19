@@ -11,6 +11,8 @@ table {
   border-radius: 10px;
   padding: 0.5rem;
   overflow-x: auto;
+  max-height: 500px;
+  overflow-y: auto;   
 }
 
 th {

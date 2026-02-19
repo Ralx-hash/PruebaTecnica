@@ -1,0 +1,8 @@
+.example-header-image {
+  background-image: url('https://img.freepik.com/premium-vector/default-avatar-profile-icon-social-media-user-image-gray-avatar-icon-blank-profile-silhouette-vector-illustration_561158-3407.jpg?semt=ais_user_personalization&w=740&q=80');
+  background-size: cover;
+}
+
+.campo-perfil{
+    margin: 4px 0 0 4px;
+}

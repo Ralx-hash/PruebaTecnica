@@ -1,0 +1,25 @@
+<mat-card class="example-card" appearance="outlined">
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title>{{perfil?.email}}</mat-card-title>
+    <mat-card-subtitle>{{perfil?.rol}}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <div style="display: flex; flex-direction: row;">
+        <div >
+            <mat-icon>assignment_ind</mat-icon>
+        </div>
+        <div class="campo-perfil">
+            <span>Nombre: {{perfil?.nombre}}</span>
+        </div>
+    </div>  
+    <div style="display: flex; flex-direction: row;">
+        <div >
+            <mat-icon>money</mat-icon>
+        </div>
+        <div class="campo-perfil">
+            <span>Renta Mensual: $ {{perfil?.renta_mensual}}</span>
+        </div>
+    </div>
+  </mat-card-content>
+</mat-card>
