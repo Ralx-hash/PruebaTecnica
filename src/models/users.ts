@@ -11,6 +11,6 @@ export interface RespuestaAutenticacionDTO {
 
 export interface UsuarioListaDTO {
     id: number;
-    username: string;
+    nombre: string;
     email: string;
 }
