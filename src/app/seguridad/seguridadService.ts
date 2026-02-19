@@ -25,7 +25,7 @@ export class SeguridadService {
   }
 
   obtenerUsuarios(): Observable<UsuarioListaDTO[]> {
-    return this.http.get<UsuarioListaDTO[]>(`${this.urlbase}/all-dict`)
+    return this.http.get<UsuarioListaDTO[]>(`${this.urlbase}/users-filtered`)
     .pipe(tap(listaUsuarios => {console.log(listaUsuarios)}));
   }
 
