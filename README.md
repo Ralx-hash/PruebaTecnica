@@ -17,6 +17,8 @@ La base de datos se trabajo en PostgreSQL, con una sola tabla con los siguientes
 <li>hashed_password: varchar(255)</li>
 </ul>
 
+<p>Por temas de comodidad (y para hacer la insersion de los usuarios en la bd mas facil) campos que DEBERIAN ser Not Null no lo son, tales como rol, email, normalized_email y hashed_password (renta_mensual es por default 0)</p>
+
 <h3>Login</h3>
 <p>El login se trabaja mediante el modulo de forms de Angular Materials, pasa por una simple verificacion (required) y 
 devuelve error si el usuario se autentico de forma incorrecta, en caso de que el usuario se haya identificado de forma correcta
