@@ -19,15 +19,14 @@ import { PerfilComponent } from '../compartido/perfil/perfil.component';
 export class ListaUsuariosComponent implements OnInit{
 
   ngOnInit(): void {
+    //se carga el perfil del usuario al entrar en la vista de listaUsuarios
     this.userServicio.obtenerPerfil().subscribe({
       next:(data) => {
         if(data.rol === 'admin' || data.rol === 'supervisor'){
           this.verificadorUsuario = true;
-          console.log('Usuario tiene permisos de admin/supervisor');
         }
         else{
           this.verificadorUsuario = false;
-          console.log('Usuario no tiene permisos');
         }
       },      
       error: (err) => {
@@ -35,7 +34,9 @@ export class ListaUsuariosComponent implements OnInit{
       }
     });
 
-
+    //la lista de usuarios se carga independientemente del usuario
+    //aunque por logica del backend, si tiene rol usuario solo traera su propio usuario, asi que no hay punto en
+    //hacer que se vea la lista, ya que esta informacion puede verse en el dialog del perfil
     this.userServicio.obtenerUsuarios().pipe(take(1)).subscribe({
       next: (data) => {
         this.listaUsuarios = data;

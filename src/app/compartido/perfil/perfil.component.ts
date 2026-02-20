@@ -19,7 +19,6 @@ export class PerfilComponent {
     this.seguridadService.obtenerPerfil().subscribe({
       next: (data) => {
         this.perfil = data;
-        console.log('Perfil obtenido:', this.perfil);
       },
       error: (err) => {
         console.error('Error al obtener perfil', err);

@@ -4,6 +4,7 @@ import { ListaUsuariosComponent } from './lista-usuarios/lista-usuarios.componen
 import { adminGuard } from './seguridad/loginGuard.guard';
 
 export const routes: Routes = [
+    //solo hay 2 rutas y una de ellas esta protegida por el guard
     {path: '', component: ListaUsuariosComponent, canActivate: [adminGuard]},
     {path: 'login', component: LoginComponent}
 ];

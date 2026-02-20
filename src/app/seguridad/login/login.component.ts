@@ -33,6 +33,7 @@ export class LoginComponent {
     password: ['', [Validators.required]]
   })
 
+  //estas 2 funciones son para mostrar los mensajes de error de validacion en el template
   obtenerErrorEmail() {
     let campo = this.form.controls['email'];
 
@@ -56,18 +57,13 @@ export class LoginComponent {
     this.mensajesError = [];
     
     if (this.form.valid) {
-      console.log('Guardando cambios...');
-      console.log(this.form.value);
 
       this.userServicio.Login(this.form.value as UserLogin).subscribe({
         next: (response) => {
-          console.log('Respuesta de autenticación:', response);
           this.router.navigate(['/']);
         },
         error: (error) => {
-          console.error('Error al iniciar sesión:', error);
           const errores = extraerErrores(error);
-          console.log('Mensajes de error:', errores);
           this.mensajesError = errores; // Guardar errores para mostrar en template
         }
       })

@@ -1,9 +1,10 @@
 export function extraerErrores(obj: any): string[] {
     let mensajesDeError: string[] = [];
 
-    // extraer errores para formato {"status": ..., "details": "..."}
-    if (obj.detail) {
-        mensajesDeError.push(obj.detail);
+    // capturar errores para formato {"status": ..., "details": "..."} el cual es el formato
+    //con el que se estan enviando los errores en el backend
+    if (obj.error) {
+        mensajesDeError.push(obj.error.detail);
         return mensajesDeError;
     }
 

@@ -24,10 +24,12 @@ export class SeguridadService {
     }));
   }
 
+  //esto obtiene la lista de usuarios dependiendo del rol del usuario autenticad (esto esta en la logica del backend)
   obtenerUsuarios(): Observable<UsuarioListaDTO[]> {
     return this.http.get<UsuarioListaDTO[]>(`${this.urlbase}/users-filtered`);
   }
 
+  //es obtienen los datos del usuario (ver UsuarioPerfilDTO)
   obtenerPerfil(): Observable<UsuarioPerfilDTO> {
     return this.http.get<UsuarioPerfilDTO>(`${this.urlbase}/perfil`);
   }
@@ -43,7 +45,7 @@ export class SeguridadService {
     return localStorage.getItem(this.token);
   }
 
-  //verifika si el token existe y si no ha expirado, si ha expirado se elimina el token y se redirige al login
+  //verifica si el token existe y si no ha expirado, si ha expirado se elimina el token y se redirige al login
   estaLogeado(): boolean {
     const token = localStorage.getItem(this.token);
     if (!token) {
@@ -70,6 +72,7 @@ export class SeguridadService {
     return datatoken[campo];
   }
 
+  //lo que dice, quita el token y la expiracion del localStorage y redirige al login
   logout(): void {
     localStorage.removeItem(this.token);
     localStorage.removeItem(this.expiracion);

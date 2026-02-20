@@ -7,7 +7,7 @@
       <form class="formulario-login" [formGroup]="form" (ngSubmit)="logear()">
         
         <div *ngIf="mensajesError.length > 0" class="errores-servidor">
-          <div *ngFor="let error of mensajesError" class="mensaje-error">
+          <div *ngFor="let error of mensajesError" class="mensaje-error"> 
             {{ error }}
           </div>
         </div>
