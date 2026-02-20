@@ -1,59 +1,37 @@
-# LoginPrueba
+<h1>Prueba Tecnica - README</h1>
+<h2>Descripción</h2>
+<p>App web que consume de una API en Litestar - Funcion principal de mostrar una lista de usuarios que, dependiendo del rol
+del usuario autenticado, mostrara la lista con mas o menos usuarios. Tambien es posible ver los datos del usuario autenticado
+</p>
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.0.0.
+<h2>Funcionalidades principales</h2>
 
-## Development server
+La base de datos se trabajo en PostgreSQL, con una sola tabla con los siguientes atributos:
+<ul>
+<li>id: Incremental/int</li>
+<li>nombre: varchar(255)</li>
+<li>rol: varchar(50)</li>
+<li>renta_mensual: numeric(12, 5)</li>
+<li>email: varchar(255) //Comentario: Esto es basicamente el nombre sin espacios, seguido de un "@gmail.com"</li> 
+<li>normalized_email: varchar(255) //Comentario: Esto es el email pero totalemnte en mayusculas (util para validaciones)</li>
+<li>hashed_password: varchar(255)</li>
+</ul>
 
-To start a local development server, run:
+<h3>Login</h3>
+<p>El login se trabaja mediante el modulo de forms de Angular Materials, pasa por una simple verificacion (required) y 
+devuelve error si el usuario se autentico de forma incorrecta, en caso de que el usuario se haya identificado de forma correcta
+el backend en Litestar enviara el token y su fecha de expiracion por el body, seguridadService se encarga de tratar esta informacion
+</p>
 
-```bash
-ng serve
-```
+<h3>Lista</h3>
+<p>Al entrar a lista-usuarios.component (que seria como el home del proyecto) se hacen algunas consultas a la bd por medio de seguridadService, siendo estas para obtener el perfil y la lista en si. Las validaciones de si el usuario puede consultar cierta informacion las hace el backend en Litestar, por lo tanto el metodo que recoge la lista solo tiene que encargarse de servir la informacion, no obstante hay un detalle. Si bien cuando el usuario tiene rol "usuario" la api envia una lista, esta solo viene con la informacion del usuario en cuestion y ni un registro mas, por lo cual es innecesario mostrar este registro.
+</p>
+<p> 
+El booleano verificadorUsuario y la condicional en la plantilla controlan este tema. Ahora bien, para que a los roles "usuario" se les muestre algo y no solo la pantalla en blanco, hay programado que un dialogo se abra con un boton. Dialog de Angular Material es parecido a lo que vendria siendo un modal. Dentro de este "modal" esta la informacion del usuario para todos los roles de usuario, esta informacion cuenta con el correo, nombre, rol y renta mensual
+</p>
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+<h3>Guard, interceptor-auth, y barra superior</h3>
+<p> 
+Angular tiene una forma de tratar con el ruteo a lo que deberian ser rutas protegidas. Esto es por medio de guard, esta cuenta con un metodo simple que injecta seguridadService para consultar el token actual.
+Interceptor-auth es otro metodo que tiene que ver con la autentificacion, es el metodo encargado de enviar el token devuelta a a la API por medio del header de la respuesta. Y por ultimo el componente de barra superior, este importa autorizarComponent para verficar si el usuario puede ver ciertas adiciones de la barra, como por ejemplo, un usuario deslogeado no sera capaz de ver ni el boton de logout ni el email (porque no habria email que consultar en primera).
+</p> 

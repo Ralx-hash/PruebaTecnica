@@ -14,13 +14,13 @@
         
         <mat-form-field appearance="outline" class="campos-rellenar">
           <mat-label>Email</mat-label>
-          <input matInput type="email" formControlName="email" />
+          <input class="input-login" matInput type="email" formControlName="email" />
           <mat-error>{{ obtenerErrorEmail() }}</mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="campos-rellenar">
           <mat-label>Contraseña</mat-label>
-          <input matInput type="password" formControlName="password" />
+          <input class="input-login" matInput type="password" formControlName="password" />
           <mat-error>{{ obtenerErrorPassword() }}</mat-error>
         </mat-form-field>
         
