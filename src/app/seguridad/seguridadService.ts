@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { environment } from '../../environments/enviroment.development';
+import { environment } from '../../environments/environment';
 import { Router } from '@angular/router';
 import { UserLogin, RespuestaAutenticacionDTO, UsuarioListaDTO, UsuarioPerfilDTO } from '../../models/users';
 import { Observable, tap } from 'rxjs';
