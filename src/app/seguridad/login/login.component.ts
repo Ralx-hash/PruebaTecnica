@@ -3,6 +3,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { SeguridadService } from '../seguridadService';
 import { Router } from '@angular/router';
 import { FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
@@ -13,7 +14,8 @@ import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-login',
-  imports: [MatButtonModule, MatCardModule, MatFormFieldModule, MatInputModule, ReactiveFormsModule, CommonModule],
+  imports: [MatButtonModule, MatCardModule, MatFormFieldModule, MatInputModule, ReactiveFormsModule, CommonModule,
+    MatProgressSpinnerModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
@@ -27,6 +29,8 @@ export class LoginComponent {
 
   // Propiedad para almacenar mensajes de error del servidor
   mensajesError: string[] = [];
+
+  booleanCarga: boolean = false;
 
   //se crean los campos del formulario con sus validaciones
   form = this.formBuilder.group({
@@ -61,6 +65,7 @@ export class LoginComponent {
 
   logear() {
     this.mensajesError = [];
+    this.booleanCarga = true;
     
     if (this.form.valid) {
 
@@ -70,11 +75,12 @@ export class LoginComponent {
         },
         error: (error) => {
           const errores = extraerErrores(error);
-          this.mensajesError = errores; // Guardar errores para mostrar en template
+          this.mensajesError = errores; // Guardar errores para mostrar en template       
+          this.booleanCarga = false;
         }
       })
     } else {
-      console.log('Formulario inválido');
+      this.mensajesError = ['Por favor, corrige los errores en el formulario.'];
     }
   }
 }

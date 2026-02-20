@@ -1,4 +1,27 @@
 <h1>Prueba Tecnica - README</h1>
+
+<h2>Requisitos</h2>
+
+<ul>
+<li>Node.js: 18.x o superior</li>
+<li>Angular: 19.0.0</li>
+<li>Angular CLI: 19.0.0</li>
+<li>Angular Material: 19.2.19</li>
+<li>TypeScript: 5.6.2</li>
+</ul>
+
+<h2>Comandos</h2>
+<p>Angular CLI</p>
+
+```bash
+npm install -g @angular/cli@19.0.0
+```
+<p>para correr el el cliente en desarrollo:</p>
+
+```bash
+ng serve -o
+```
+
 <h2>Descripción</h2>
 <p>App web que consume de una API en Litestar - Funcion principal de mostrar una lista de usuarios que, dependiendo del rol
 del usuario autenticado, mostrara la lista con mas o menos usuarios. Tambien es posible ver los datos del usuario autenticado

@@ -2,6 +2,8 @@ const fs = require('fs');
 const path = require('path');
 
 // Lee las variables de entorno del proveedor
+//qui se tendria que dejar solo process.env.APIURL y no el hardcodeo de la url del backend
+//por razones de comodidad y para evitar problemas en deploy se dejara de esta forma
 const apiUrl = process.env.API_URL || 'https://pruebatecnica-litestar.onrender.com';
 const production = process.env.NODE_ENV === 'production' || process.env.PRODUCTION === 'true';
 

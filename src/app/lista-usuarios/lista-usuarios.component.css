@@ -38,3 +38,8 @@ tr:hover {
 .contenedor-principal-lista-usuarios{
     margin-top: 2rem;
 }
+
+.carga{
+    justify-items: center;
+    margin-top: 100px;
+}

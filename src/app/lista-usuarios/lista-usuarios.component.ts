@@ -9,10 +9,12 @@ import { SeguridadService } from '../seguridad/seguridadService';
 import { UsuarioListaDTO } from '../../models/users';
 import { take } from 'rxjs';
 import { PerfilComponent } from '../compartido/perfil/perfil.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-lista-usuarios',
-  imports: [MatToolbarModule, MatButtonModule, CommonModule, MatPaginatorModule, MatTableModule, MatDialogModule],
+  imports: [MatToolbarModule, MatButtonModule, CommonModule, MatPaginatorModule, MatTableModule, MatDialogModule, 
+    MatProgressSpinnerModule],
   templateUrl: './lista-usuarios.component.html',
   styleUrl: './lista-usuarios.component.css'
 })
@@ -30,7 +32,6 @@ export class ListaUsuariosComponent implements OnInit{
         }
       },      
       error: (err) => {
-        console.error('Error al obtener perfil', err);
       }
     });
 
@@ -40,10 +41,8 @@ export class ListaUsuariosComponent implements OnInit{
     this.userServicio.obtenerUsuarios().pipe(take(1)).subscribe({
       next: (data) => {
         this.listaUsuarios = data;
-        console.log('Usuarios obtenidos:', this.listaUsuarios);
       },
       error: (err) => {
-        console.error('Error al obtener usuarios', err);
       }
     });
     

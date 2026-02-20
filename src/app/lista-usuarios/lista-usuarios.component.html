@@ -1,39 +1,46 @@
-@if (!verificadorUsuario) {
-  <div class="contenedor-principal-lista-usuarios">
-    <button mat-raised-button color="primary" (click)="abrirDialog()">Ver Perfil</button>
-    <p>No tienes permisos para ver la lista de usuarios.</p>
-  </div>
-} @else {
-  <div class="contenedor-principal-lista-usuarios">
-    <button mat-raised-button color="primary" (click)="abrirDialog()">Ver Perfil</button>
-    <div class="contenedor-tabla">
-        <table mat-table [dataSource]="listaUsuarios" class="mat-elevation-z8">
-            <ng-container matColumnDef="id">
-                <th mat-header-cell *matHeaderCellDef> ID </th>
-                <td mat-cell *matCellDef="let usuario"> {{usuario.id}} </td>
-            </ng-container>
-
-            <ng-container matColumnDef="nombre">
-                <th mat-header-cell *matHeaderCellDef> Nombre </th>
-                <td mat-cell *matCellDef="let usuario"> {{usuario.nombre}} </td>
-            </ng-container>
-
-            <ng-container matColumnDef="rol">
-                <th mat-header-cell *matHeaderCellDef> Rol </th>
-                <td mat-cell *matCellDef="let usuario"> {{usuario.rol}} </td>
-            </ng-container>
-
-            <ng-container matColumnDef="renta_mensual">
-                <th mat-header-cell *matHeaderCellDef> Renta Mensual </th>
-                <td mat-cell *matCellDef="let usuario"> ${{usuario.renta_mensual}} </td>
-            </ng-container>
-
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-
-        </table>
+@if (listaUsuarios.length === 0) {
+  <div class="cuadro-carga">
+    <div class="carga">
+      <mat-spinner></mat-spinner>
     </div>
   </div>
-}
+} @else {
+    @if (!verificadorUsuario) {
+    <div class="contenedor-principal-lista-usuarios">
+      <button mat-raised-button color="primary" (click)="abrirDialog()">Ver Perfil</button>
+      <p>No tienes permisos para ver la lista de usuarios.</p>
+    </div>
+  } @else {
+    <div class="contenedor-principal-lista-usuarios">
+      <button mat-raised-button color="primary" (click)="abrirDialog()">Ver Perfil</button>
+      <div class="contenedor-tabla">
+          <table mat-table [dataSource]="listaUsuarios" class="mat-elevation-z8">
+              <ng-container matColumnDef="id">
+                  <th mat-header-cell *matHeaderCellDef> ID </th>
+                  <td mat-cell *matCellDef="let usuario"> {{usuario.id}} </td>
+              </ng-container>
 
+              <ng-container matColumnDef="nombre">
+                  <th mat-header-cell *matHeaderCellDef> Nombre </th>
+                  <td mat-cell *matCellDef="let usuario"> {{usuario.nombre}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="rol">
+                  <th mat-header-cell *matHeaderCellDef> Rol </th>
+                  <td mat-cell *matCellDef="let usuario"> {{usuario.rol}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="renta_mensual">
+                  <th mat-header-cell *matHeaderCellDef> Renta Mensual </th>
+                  <td mat-cell *matCellDef="let usuario"> ${{usuario.renta_mensual}} </td>
+              </ng-container>
+
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+          </table>
+      </div>
+    </div>
+  }
+}
 

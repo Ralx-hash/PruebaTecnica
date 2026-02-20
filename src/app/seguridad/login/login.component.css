@@ -45,3 +45,9 @@ mat-card-header{
 input{
     min-width: 250px;
 }
+
+.carga{
+    justify-items: center;
+    margin-top: 100px;
+}
+
