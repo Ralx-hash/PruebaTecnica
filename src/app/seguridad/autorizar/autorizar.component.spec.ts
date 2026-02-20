@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { AutorizarComponent } from './autorizar.component';
 
 describe('AutorizarComponent', () => {
@@ -8,7 +9,11 @@ describe('AutorizarComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AutorizarComponent]
+      imports: [AutorizarComponent],
+      providers: [
+        provideHttpClient(),      // ← Nueva API para HttpClient (Angular 17+)
+        provideHttpClientTesting() // ← Nueva API para testing (Angular 17+)
+      ]
     })
     .compileComponents();
 
