@@ -1,8 +1,11 @@
-<app-perfil>
-    
-</app-perfil>
-
-<div class="contenedor-principal-lista-usuarios">
+@if (!verificadorUsuario) {
+  <div class="contenedor-principal-lista-usuarios">
+    <button mat-raised-button color="primary" (click)="abrirDialog()">Ver Perfil</button>
+    <p>No tienes permisos para ver la lista de usuarios.</p>
+  </div>
+} @else {
+  <div class="contenedor-principal-lista-usuarios">
+    <button mat-raised-button color="primary" (click)="abrirDialog()">Ver Perfil</button>
     <div class="contenedor-tabla">
         <table mat-table [dataSource]="listaUsuarios" class="mat-elevation-z8">
             <ng-container matColumnDef="id">
@@ -30,4 +33,7 @@
 
         </table>
     </div>
-</div>
+  </div>
+}
+
+

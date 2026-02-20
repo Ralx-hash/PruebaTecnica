@@ -6,3 +6,17 @@
 .campo-perfil{
     margin: 4px 0 0 4px;
 }
+
+.contenedor-campos{
+    display: flex;
+    flex-direction: row;
+}
+
+.card-entera{
+    width: 500px;   
+    margin: 0 15px 20px 15px;  
+}
+
+h2{
+    margin-left: 1rem;
+}

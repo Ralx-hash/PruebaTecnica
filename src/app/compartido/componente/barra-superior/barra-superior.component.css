@@ -5,3 +5,9 @@ app-autorizar{
 .espacio{
     flex: 1;
 }
+
+mat-toolbar {
+    background-color: #D4DDFF;
+    color: white;
+    max-height: 50px;
+}

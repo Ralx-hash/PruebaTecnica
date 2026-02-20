@@ -1,10 +1,23 @@
 .formulario-login{
     display: flex;
     flex-direction: column;
+    width: 100%;
+    max-width: 400px;          /* Ancho máximo del formulario */
 }
 
 .campos-rellenar{
     margin-bottom: 40px;
+    min-width: 300px;          /* Ancho mínimo de 300px para los inputs */
+}
+
+/* Asegurar que el mat-form-field ocupe el ancho completo */
+.campos-rellenar .mat-mdc-form-field {
+    width: 100%;
+}
+
+/* Asegurar que el input interno también tenga el ancho correcto */
+.campos-rellenar input {
+    min-width: 300px;
 }
 
 /* Estilos para errores del servidor */
@@ -20,4 +33,17 @@
     border-left: 4px solid #c62828;
     margin-bottom: 8px;
     font-size: 14px;
+}
+
+.cuadro-login{
+    display: flex;
+    justify-content: center;   /* Centrar horizontalmente */
+    align-items: flex-start;   /* Alinear hacia arriba */
+    min-height: 100vh;         /* Usar toda la altura de la ventana */
+    padding: 80px 20px 20px;   /* Más padding top para bajar de la barra */
+}
+
+mat-card-header{
+    display: flex;
+    align-self: center;
 }
