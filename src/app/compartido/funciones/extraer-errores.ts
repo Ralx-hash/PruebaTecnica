@@ -9,6 +9,7 @@ export function extraerErrores(obj: any): string[] {
         return mensajesDeError;
     }
 
+
     //en caso de no recibir details envia un error generico
     mensajesDeError.push('Error desconocido');
     return mensajesDeError;

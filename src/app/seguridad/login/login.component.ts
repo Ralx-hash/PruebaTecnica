@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { UserLogin } from '../../../models/users';
 import { extraerErrores } from '../../compartido/funciones/extraer-errores';
+import { emailConTildesValidator } from '../../compartido/funciones/email-validator';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -29,7 +30,7 @@ export class LoginComponent {
 
   //se crean los campos del formulario con sus validaciones
   form = this.formBuilder.group({
-    email: ['', [Validators.required]],
+    email: ['', [Validators.required, emailConTildesValidator]],
     password: ['', [Validators.required]]
   })
 
@@ -40,6 +41,11 @@ export class LoginComponent {
     if (campo.hasError('required')) {
       return 'El email es requerido';
     }
+    
+    if (campo.hasError('emailInvalido')) {
+      return 'El formato del email no es válido';
+    }
+    
     return ""
   }
 
