@@ -32,6 +32,7 @@ export class ListaUsuariosComponent implements OnInit{
           this.rolActual = data.rol;
         }
         else{
+          //esto es para no mostrar la lista a rol usuarios
           this.verificadorUsuario = false;
         }
       },      
@@ -58,10 +59,13 @@ export class ListaUsuariosComponent implements OnInit{
 
     this.filtroRol.valueChanges.subscribe(rol => {
       this.aplicarFiltroRol(rol || 'todos');
+      this.rolActualRadio = rol || 'todos';
+      this.filtroNombre.setValue('');
     });
     
   }
 
+  rolActualRadio: string = 'todos';
 
   filtroNombre = new FormControl('');
 
@@ -94,14 +98,13 @@ export class ListaUsuariosComponent implements OnInit{
   }
 
   filtrarPorBusqueda(busqueda: string) {
-    if (!busqueda.trim()) {
-      this.listaFiltrada = this.listaUsuarios;
-    } else {
       const termino = busqueda.toLowerCase();
-      this.listaFiltrada = this.listaUsuarios.filter(usuario =>
+      this.listaFiltrada = this.listaFiltrada.filter(usuario =>
         usuario.nombre.toLowerCase().includes(termino)
       );
-    }
+      if (!busqueda.trim()){
+        this.aplicarFiltroRol(this.rolActualRadio);
+      }
   }
 
   aplicarFiltroRol(rol: string) {
