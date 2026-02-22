@@ -50,6 +50,8 @@ el backend en Litestar enviara el token y su fecha de expiracion por el body, se
 
 <h3>Lista</h3>
 <p>Al entrar a lista-usuarios.component (que seria como el home del proyecto) se hacen algunas consultas a la bd por medio de seguridadService, siendo estas para obtener el perfil y la lista en si. Las validaciones de si el usuario puede consultar cierta informacion las hace el backend en Litestar, por lo tanto el metodo que recoge la lista solo tiene que encargarse de servir la informacion, no obstante hay un detalle. Si bien cuando el usuario tiene rol "usuario" la api envia una lista, esta solo viene con la informacion del usuario en cuestion y ni un registro mas, por lo cual es innecesario mostrar este registro.
+Hay botones de filtro para mostrar todos los registros, o solo admins, o solo supervisores o solo usuarios. (disponible solo para admins y supervisores)
+Tambien hay un form para buscar a un usuario por nombre (esto se logra suscribiendonos a los cambios del form al iniciar el componente).
 </p>
 <p> 
 El booleano verificadorUsuario y la condicional en la plantilla controlan este tema. Ahora bien, para que a los roles "usuario" se les muestre algo y no solo la pantalla en blanco, hay programado que un dialogo se abra con un boton. Dialog de Angular Material es parecido a lo que vendria siendo un modal. Dentro de este "modal" esta la informacion del usuario para todos los roles de usuario, esta informacion cuenta con el correo, nombre, rol y renta mensual
@@ -60,3 +62,11 @@ El booleano verificadorUsuario y la condicional en la plantilla controlan este t
 Angular tiene una forma de tratar con el ruteo a lo que deberian ser rutas protegidas. Esto es por medio de guard, esta cuenta con un metodo simple que injecta seguridadService para consultar el token actual.
 Interceptor-auth es otro metodo que tiene que ver con la autentificacion, es el metodo encargado de enviar el token devuelta a a la API por medio del header de la respuesta. Y por ultimo el componente de barra superior, este importa autorizarComponent para verficar si el usuario puede ver ciertas adiciones de la barra, como por ejemplo, un usuario deslogeado no sera capaz de ver ni el boton de logout ni el email (porque no habria email que consultar en primera).
 </p> 
+
+<h3>Tests</h3>
+<p>Lo tests en Angular prueba de la siguiente forma:</p> 
+
+```bash
+ng test
+```
+<p>Ahora mismo se cuenta con tests en los componentes de lista-usuarios, funciones de compartidos y perfil de compartidos. La mayoria de los test revisa si los datos son recibidos de manera correcta y en perfil hay un solo test que contempla cambios en plantilla</p> 

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, SimpleChange, SimpleChanges } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatPaginatorModule } from '@angular/material/paginator';
@@ -10,11 +10,14 @@ import { UsuarioListaDTO } from '../../models/users';
 import { take } from 'rxjs';
 import { PerfilComponent } from '../compartido/perfil/perfil.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import {MatRadioModule} from '@angular/material/radio';
+import { MatInputModule } from '@angular/material/input';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-lista-usuarios',
   imports: [MatToolbarModule, MatButtonModule, CommonModule, MatPaginatorModule, MatTableModule, MatDialogModule, 
-    MatProgressSpinnerModule],
+    MatProgressSpinnerModule, MatRadioModule, MatInputModule, ReactiveFormsModule],
   templateUrl: './lista-usuarios.component.html',
   styleUrl: './lista-usuarios.component.css'
 })
@@ -26,6 +29,7 @@ export class ListaUsuariosComponent implements OnInit{
       next:(data) => {
         if(data.rol === 'admin' || data.rol === 'supervisor'){
           this.verificadorUsuario = true;
+          this.rolActual = data.rol;
         }
         else{
           this.verificadorUsuario = false;
@@ -41,16 +45,28 @@ export class ListaUsuariosComponent implements OnInit{
     this.userServicio.obtenerUsuarios().pipe(take(1)).subscribe({
       next: (data) => {
         this.listaUsuarios = data;
+        this.listaFiltrada = this.listaUsuarios;
       },
       error: (err) => {
       }
     });
+
+    this.filtroNombre.valueChanges.subscribe(busqueda => {
+      this.filtrarPorBusqueda(busqueda || '');
+    });
     
   }
+
+
+  filtroNombre = new FormControl('');
+
+  rolActual: string = '';
 
   verificadorUsuario: boolean = false;
 
   listaUsuarios: UsuarioListaDTO[] = [];
+
+  listaFiltrada: UsuarioListaDTO[] = this.listaUsuarios;
   
   userServicio = inject(SeguridadService);
 
@@ -62,6 +78,24 @@ export class ListaUsuariosComponent implements OnInit{
     const dialogRef = this.dialog.open(PerfilComponent);
   }
 
+  filtrarListaUsuarios(rol: string) {
+    this.listaFiltrada = this.listaUsuarios.filter(usuario => usuario.rol === rol);
+  }
+
+  deseleccionarRadio(){
+    this.listaFiltrada = this.listaUsuarios;
+  }
+
+  filtrarPorBusqueda(busqueda: string) {
+    if (!busqueda.trim()) {
+      this.listaFiltrada = this.listaUsuarios;
+    } else {
+      const termino = busqueda.toLowerCase();
+      this.listaFiltrada = this.listaUsuarios.filter(usuario =>
+        usuario.nombre.toLowerCase().includes(termino)
+      );
+    }
+  }
 
 
 

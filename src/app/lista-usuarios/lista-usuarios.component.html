@@ -13,8 +13,20 @@
   } @else {
     <div class="contenedor-principal-lista-usuarios">
       <button mat-raised-button color="primary" (click)="abrirDialog()">Ver Perfil</button>
-      <div class="contenedor-tabla">
-          <table mat-table [dataSource]="listaUsuarios" class="mat-elevation-z8">
+      <mat-form-field appearance="outline">
+        <mat-label>Buscar usuario</mat-label>
+        <input matInput [formControl]="filtroNombre" placeholder="Nombre de usuario">
+      </mat-form-field>
+      
+      <div class="tabla-radio">
+        <mat-radio-group aria-label="Select an option">
+          <mat-radio-button value="1" checked (click)="deseleccionarRadio()">Todos</mat-radio-button>
+          <mat-radio-button value="2" (click)="filtrarListaUsuarios('admin')">Admin</mat-radio-button>
+          <mat-radio-button value="3" *ngIf="rolActual !== 'supervisor'" (click)="filtrarListaUsuarios('supervisor')">Supervisores</mat-radio-button>
+          <mat-radio-button value="4" (click)="filtrarListaUsuarios('usuario')">Usuarios</mat-radio-button>
+        </mat-radio-group>
+        <div class="contenedor-tabla">
+          <table mat-table [dataSource]="listaFiltrada" class="mat-elevation-z8">
               <ng-container matColumnDef="id">
                   <th mat-header-cell *matHeaderCellDef> ID </th>
                   <td mat-cell *matCellDef="let usuario"> {{usuario.id}} </td>
@@ -39,8 +51,8 @@
               <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
           </table>
+        </div>
       </div>
     </div>
   }
 }
-

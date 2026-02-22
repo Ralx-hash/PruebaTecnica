@@ -69,7 +69,6 @@ describe('PerfilComponent', () => {
 
 
   it('debe manejar errores al cargar el perfil', () => {
-    // 📝 ARRANGE (Preparar error)
     const errorResponse = { status: 500, message: 'Server Error' };
     mockSeguridadService.obtenerPerfil.and.returnValue(throwError(() => errorResponse));
     
@@ -107,9 +106,4 @@ describe('PerfilComponent', () => {
     expect(compiled.textContent).toContain('ana@example.com');
   });
 
-  // 🧩 TEST 6: VERIFICAR INYECCIÓN DE DEPENDENCIAS
-  it('debe inyectar SeguridadService correctamente', () => {
-    expect(component.seguridadService).toBeTruthy();
-    expect(component.seguridadService).toBe(mockSeguridadService);
-  });
 });

@@ -13,7 +13,7 @@ table {
   overflow-x: auto;
   max-height: 500px;
   overflow-y: auto;
-  margin-top: 2rem;
+
 }
 
 th {
@@ -37,9 +37,24 @@ tr:hover {
 
 .contenedor-principal-lista-usuarios{
     margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+button{
+  max-width: 130px;
 }
 
 .carga{
     justify-items: center;
     margin-top: 100px;
+}
+
+mat-radio-group{
+  margin-left: 40px;
+}
+
+mat-form-field{
+  max-width: 200px;
 }
