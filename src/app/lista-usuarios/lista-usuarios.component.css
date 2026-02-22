@@ -58,3 +58,7 @@ mat-radio-group{
 mat-form-field{
   max-width: 200px;
 }
+
+mat-radio-button{
+  max-height: 20px;
+}
