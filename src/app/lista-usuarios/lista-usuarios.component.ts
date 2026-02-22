@@ -45,6 +45,7 @@ export class ListaUsuariosComponent implements OnInit{
     this.userServicio.obtenerUsuarios().pipe(take(1)).subscribe({
       next: (data) => {
         this.listaUsuarios = data;
+        
         this.listaFiltrada = this.listaUsuarios;
       },
       error: (err) => {
@@ -54,11 +55,17 @@ export class ListaUsuariosComponent implements OnInit{
     this.filtroNombre.valueChanges.subscribe(busqueda => {
       this.filtrarPorBusqueda(busqueda || '');
     });
+
+    this.filtroRol.valueChanges.subscribe(rol => {
+      this.aplicarFiltroRol(rol || 'todos');
+    });
     
   }
 
 
   filtroNombre = new FormControl('');
+
+  filtroRol = new FormControl('todos');
 
   rolActual: string = '';
 
@@ -94,6 +101,14 @@ export class ListaUsuariosComponent implements OnInit{
       this.listaFiltrada = this.listaUsuarios.filter(usuario =>
         usuario.nombre.toLowerCase().includes(termino)
       );
+    }
+  }
+
+  aplicarFiltroRol(rol: string) {
+    if (rol === 'todos') {
+      this.listaFiltrada = this.listaUsuarios;
+    } else {
+      this.listaFiltrada = this.listaUsuarios.filter(usuario => usuario.rol === rol);
     }
   }
 

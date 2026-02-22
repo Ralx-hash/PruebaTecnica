@@ -20,11 +20,11 @@
       </mat-form-field>
       
       <div class="tabla-radio">
-        <mat-radio-group aria-label="Select an option">
-          <mat-radio-button value="1" checked (click)="deseleccionarRadio()">Todos</mat-radio-button>
-          <mat-radio-button value="2" (click)="filtrarListaUsuarios('admin')">Admin</mat-radio-button>
-          <mat-radio-button value="3" *ngIf="rolActual !== 'supervisor'" (click)="filtrarListaUsuarios('supervisor')">Supervisores</mat-radio-button>
-          <mat-radio-button value="4" (click)="filtrarListaUsuarios('usuario')">Usuarios</mat-radio-button>
+        <mat-radio-group aria-label="Select an option" [formControl]="filtroRol">
+          <mat-radio-button value="todos">Todos</mat-radio-button>
+          <mat-radio-button value="admin" *ngIf="rolActual == 'admin'">Admin</mat-radio-button>
+          <mat-radio-button value="supervisor">Supervisores</mat-radio-button>
+          <mat-radio-button value="usuario">Usuarios</mat-radio-button>
         </mat-radio-group>
         <div class="contenedor-tabla">
           <table mat-table [dataSource]="listaFiltrada" class="mat-elevation-z8">
