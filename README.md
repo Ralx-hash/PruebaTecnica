@@ -46,9 +46,11 @@ La base de datos se trabajo en PostgreSQL, con una sola tabla con los siguientes
 <p>El login se trabaja mediante el modulo de forms de Angular Materials, pasa por una simple verificacion (required) y 
 devuelve error si el usuario se autentico de forma incorrecta, en caso de que el usuario se haya identificado de forma correcta
 el backend en Litestar enviara el token y su fecha de expiracion por el body, seguridadService se encarga de tratar esta informacion
-Usuario: Nombre(sin espacios) + @gmail.com
-Contraseña: Nombre(sin espacios) + @gmail.com
 </p>
+<ul>
+<li>Usuario: Nombre(sin espacios) + @gmail.com</li>
+<li>Contraseña: Nombre(sin espacios) + @gmail.com</li>
+</ul>
 
 <h3>Lista</h3>
 <p>Al entrar a lista-usuarios.component (que seria como el home del proyecto) se hacen algunas consultas a la bd por medio de seguridadService, siendo estas para obtener el perfil y la lista en si. Las validaciones de si el usuario puede consultar cierta informacion las hace el backend en Litestar, por lo tanto el metodo que recoge la lista solo tiene que encargarse de servir la informacion, no obstante hay un detalle. Si bien cuando el usuario tiene rol "usuario" la api envia una lista, esta solo viene con la informacion del usuario en cuestion y ni un registro mas, por lo cual es innecesario mostrar este registro.
