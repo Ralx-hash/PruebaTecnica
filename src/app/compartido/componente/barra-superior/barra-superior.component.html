@@ -9,7 +9,7 @@
   <div class="espacio"></div>
 
   <app-autorizar>
-    <a mat-button autorizado color="accent">{{userServicio.obtenerCampoJWT('extras')?.email}}</a>
+    <a mat-button autorizado disabled color="accent">{{userServicio.obtenerCampoJWT('extras')?.email}}</a>
     <a mat-button autorizado (click)="userServicio.logout()" color="warn">Logout</a>
   </app-autorizar>
 </mat-toolbar>

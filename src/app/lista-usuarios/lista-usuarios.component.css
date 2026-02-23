@@ -51,8 +51,19 @@ button{
     margin-top: 100px;
 }
 
+.tabla-radio {
+  margin-top: 10px;
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
 mat-radio-group{
-  margin-left: 40px;
+  margin: 0;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
 mat-form-field{
