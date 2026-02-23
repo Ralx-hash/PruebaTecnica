@@ -46,6 +46,8 @@ La base de datos se trabajo en PostgreSQL, con una sola tabla con los siguientes
 <p>El login se trabaja mediante el modulo de forms de Angular Materials, pasa por una simple verificacion (required) y 
 devuelve error si el usuario se autentico de forma incorrecta, en caso de que el usuario se haya identificado de forma correcta
 el backend en Litestar enviara el token y su fecha de expiracion por el body, seguridadService se encarga de tratar esta informacion
+Usuario: Nombre(sin espacios) + @gmail.com
+Contraseña: Nombre(sin espacios) + @gmail.com
 </p>
 
 <h3>Lista</h3>
